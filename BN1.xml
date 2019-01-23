@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BIF VERSION="0.3"  xmlns="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3 http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3/XMLBIFv0_3.xsd">
+<NETWORK>
+<NAME>Untitled</NAME>
+<PROPERTY>detailed = </PROPERTY>
+<PROPERTY>short = </PROPERTY>
+
+<VARIABLE TYPE="nature">
+	<NAME>Maintenance</NAME>
+	<OUTCOME>deactivated</OUTCOME>
+	<OUTCOME>not  deactivated</OUTCOME>
+	<PROPERTY>position = (7536.24169921875, 5113.43896484375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Firewall Dangerous</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7550.1875, 5206.26953125)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Political events</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7637.634765625, 5117.400390625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Holidays</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7719.39404296875, 5118.822265625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Alert</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7580.0478515625, 5318.59912109375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Fault Tolerance</NAME>
+	<OUTCOME>Right Value</OUTCOME>
+	<OUTCOME>Wrong Value</OUTCOME>
+	<PROPERTY>position = (7678.8701171875, 5321.44287109375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Out of Maintenance time</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7422.015625, 5090.822265625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Phishing Dangerous</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7441.4130859375, 5206.26953125)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Phishing Email</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7242.60546875, 5168.400390625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Phishing Email Detection</NAME>
+	<OUTCOME>Right Message</OUTCOME>
+	<OUTCOME>Wrong Message</OUTCOME>
+	<PROPERTY>position = (7313.599609375, 5128.978515625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Attack Risk</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7647.587890625, 5206.26953125)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Logging Tttack Event</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7634.080078125, 5387.56103515625)</PROPERTY>
+</VARIABLE>
+
+<DEFINITION>
+	<FOR>Maintenance</FOR>
+	<TABLE>0.05 0.95</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Firewall Dangerous</FOR>
+	<GIVEN>Maintenance</GIVEN>
+	<GIVEN>Out of Maintenance time</GIVEN>
+	<TABLE>1.0 0.0 1.0 0.0 0.0 1.0 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Political events</FOR>
+	<TABLE>0.99 0.01</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Holidays</FOR>
+	<TABLE>0.27 0.73</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Alert</FOR>
+	<GIVEN>Firewall Dangerous</GIVEN>
+	<GIVEN>Phishing Dangerous</GIVEN>
+	<GIVEN>Attack Risk</GIVEN>
+	<TABLE>0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Fault Tolerance</FOR>
+	<TABLE>0.7 0.3</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Out of Maintenance time</FOR>
+	<TABLE>0.02 0.98</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Phishing Dangerous</FOR>
+	<GIVEN>Phishing Email</GIVEN>
+	<GIVEN>Phishing Email Detection</GIVEN>
+	<TABLE>1.0 0.0 0.0 1.0 0.0 1.0 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Phishing Email</FOR>
+	<TABLE>0.5 0.5</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Phishing Email Detection</FOR>
+	<TABLE>0.97 0.03</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Attack Risk</FOR>
+	<GIVEN>Political events</GIVEN>
+	<GIVEN>Holidays</GIVEN>
+	<TABLE>1.0 0.0 1.0 0.0 1.0 0.0 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Logging Tttack Event</FOR>
+	<GIVEN>Alert</GIVEN>
+	<GIVEN>Fault Tolerance</GIVEN>
+	<TABLE>1.0 0.0 0.0 1.0 0.0 1.0 0.0 1.0</TABLE>
+</DEFINITION>
+</NETWORK>
+</BIF>

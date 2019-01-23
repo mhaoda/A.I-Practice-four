@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BIF VERSION="0.3"  xmlns="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3 http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3/XMLBIFv0_3.xsd">
+<NETWORK>
+<NAME>Untitled</NAME>
+<PROPERTY>detailed = </PROPERTY>
+<PROPERTY>short = </PROPERTY>
+
+<VARIABLE TYPE="nature">
+	<NAME>Maintenance</NAME>
+	<OUTCOME>deactivated</OUTCOME>
+	<OUTCOME>not deactivated</OUTCOME>
+	<PROPERTY>position = (7526.86767578125, 5049.21337890625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Firewall Risk</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7542.34765625, 5185.55419921875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Political events</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7639.412109375, 5086.91015625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Holidays</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7730.16455078125, 5088.48828125)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Alert</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7575.49169921875, 5310.23974609375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Fault Tolerance</NAME>
+	<OUTCOME>Right Value</OUTCOME>
+	<OUTCOME>Wrong Value</OUTCOME>
+	<PROPERTY>position = (7685.18359375, 5313.39599609375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Out of Maintenance time</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7377.876953125, 5071.83837890625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Phishing Risk</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7421.6083984375, 5185.55419921875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Phishing Email</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7162.08349609375, 5172.38037109375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Phishing Email Detection</NAME>
+	<OUTCOME>Right Message</OUTCOME>
+	<OUTCOME>Wrong Message</OUTCOME>
+	<PROPERTY>position = (7256.42626953125, 5123.072265625)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Attack Risk</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7650.4599609375, 5185.55419921875)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Logging Tttack Event</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7635.466796875, 5386.78662109375)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Download File</NAME>
+	<OUTCOME>Normal File</OUTCOME>
+	<OUTCOME>Including Trojan</OUTCOME>
+	<PROPERTY>position = (7820.91650390625, 5087.7001953125)</PROPERTY>
+</VARIABLE>
+
+<VARIABLE TYPE="nature">
+	<NAME>Virus Risk</NAME>
+	<OUTCOME>T</OUTCOME>
+	<OUTCOME>F</OUTCOME>
+	<PROPERTY>position = (7754.62841796875, 5187.1328125)</PROPERTY>
+</VARIABLE>
+
+<DEFINITION>
+	<FOR>Maintenance</FOR>
+	<TABLE>0.05 0.95</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Firewall Risk</FOR>
+	<GIVEN>Maintenance</GIVEN>
+	<GIVEN>Out of Maintenance time</GIVEN>
+	<TABLE>1.0 0.0 1.0 0.0 0.0 1.0 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Political events</FOR>
+	<TABLE>0.99 0.01</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Holidays</FOR>
+	<TABLE>0.27 0.73</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Alert</FOR>
+	<GIVEN>Firewall Risk</GIVEN>
+	<GIVEN>Phishing Risk</GIVEN>
+	<GIVEN>Attack Risk</GIVEN>
+	<GIVEN>Virus Risk</GIVEN>
+	<TABLE>0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.8 0.2 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Fault Tolerance</FOR>
+	<TABLE>0.7 0.3</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Out of Maintenance time</FOR>
+	<TABLE>0.02 0.98</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Phishing Risk</FOR>
+	<GIVEN>Phishing Email</GIVEN>
+	<GIVEN>Phishing Email Detection</GIVEN>
+	<TABLE>1.0 0.0 0.0 1.0 0.0 1.0 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Phishing Email</FOR>
+	<TABLE>0.5 0.5</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Phishing Email Detection</FOR>
+	<TABLE>0.97 0.03</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Attack Risk</FOR>
+	<GIVEN>Political events</GIVEN>
+	<GIVEN>Holidays</GIVEN>
+	<TABLE>1.0 0.0 1.0 0.0 1.0 0.0 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Logging Tttack Event</FOR>
+	<GIVEN>Alert</GIVEN>
+	<GIVEN>Fault Tolerance</GIVEN>
+	<TABLE>1.0 0.0 0.0 1.0 0.0 1.0 0.0 1.0</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Download File</FOR>
+	<TABLE>0.5 0.5</TABLE>
+</DEFINITION>
+
+<DEFINITION>
+	<FOR>Virus Risk</FOR>
+	<GIVEN>Download File</GIVEN>
+	<TABLE>0.0 1.0 1.0 0.0</TABLE>
+</DEFINITION>
+</NETWORK>
+</BIF>
